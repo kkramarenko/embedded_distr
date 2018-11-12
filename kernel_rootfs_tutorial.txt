@@ -1,0 +1,17 @@
+Compiling kernel for beaglebone black/vexpress-ca9 qemu release:
+$make multi_v7_defconfig
+$make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- zImage
+
+for boneblack with u-boot kernel:
+$make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- LOADADDR=0x80008000 uImage
+
+Compiling device tree:
+$make ARCH= arm CROSS_COMPILE=arm-linux-gnueabihf- dtbs
+
+
+Copy kernel from /arch/arm/boot
+Copy dtb file from /arch/arm/boot/dts
+
+Prepare ramdisk for u-boot loading:
+$mkimage -A arm -O linux -T ramdisk -d initramfs.cpio.gz uInitram
+

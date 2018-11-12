@@ -1,0 +1,14 @@
+bootpart=0:1
+bootdir=
+loadaddr=94000000
+imagefile=uImage
+dtfile=am335x-boneblack.dtb
+dtaddr=96000000
+ramfile=uInitram
+ramaddr=97000000
+loadimage=fatload mmc 0:1  ${loadaddr} ${imagefile}
+loadram=fatload mmc 0:1 ${ramaddr} ${ramfile}
+loaddt=fatload mmc 0:1 ${dtaddr} ${dtfile}
+bootargs=rdinit=/bin/ash
+uenvcmd=run loadimage; run loadram; run loaddt; bootm ${loadaddr} ${ramaddr} ${dtaddr};
+

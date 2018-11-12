@@ -1,0 +1,14 @@
+Compiling U-boot for beaglebone black:
+$ make am335x_boneblack_defconfig
+$ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- 
+
+To create on flash boot partion for U-boot use next commands (MacOS):
+$ diskutil list
+$ diskutil partitiondisk {/dev/disk2} MBR "MS-DOS FAT32" "U-boot part" 64M free "" 0B
+$ fdisk -e {/dev/disk2}
+> p
+> f {1}
+> write
+> quit
+
+After that copy MLO, u-boot.img to partition.
